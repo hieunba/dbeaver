@@ -1,6 +1,6 @@
 #
 # Cookbook:: dbeaver
-# Recipe:: default
+# Recipe:: install
 #
 # Copyright:: 2019, Nghiem Ba Hieu
 #
@@ -15,4 +15,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-include_recipe 'dbeaver::install'
+url_prefix = 'https://github.com/dbeaver/dbeaver/releases/download/'
+version = node['dbeaver']['version']
+install_source = "#{url_prefix}/#{version}/dbeaver-ce-#{version}-x86_64-setup.exe"
+install_options = '/S /allusers'
+
+windows_package "DBeaver #{version}" do
+  source install_source
+  installer_type :custom
+  options install_options
+  action :install
+end
