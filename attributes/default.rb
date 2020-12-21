@@ -1,1 +1,1 @@
-default['dbeaver']['version'] = '6.0.3'
+default['dbeaver']['version'] = '7.3.1'
